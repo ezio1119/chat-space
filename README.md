@@ -54,8 +54,8 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string||
-|e-mail|text|null: false, unique: true|
+|name|string|index: true|
+|e-mail|text|null: false, index: true, unique: true|
 |password|text|null: false|
 
   ### Association
@@ -70,7 +70,7 @@ Things you may want to cover:
 |------|----|-------|
 |body|text||
 |image|text||
-|??|timestamp|null: false|
+|created_at|timestamp|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
