@@ -23,6 +23,7 @@ Things you may want to cover:
 
 * ...
 
+# DB設計
 
 ## membersテーブル
 
@@ -67,8 +68,8 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|body|string||
-|image|string||
+|body|text||
+|image|text||
 |??|timestamp|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
