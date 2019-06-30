@@ -29,7 +29,6 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|group_id|integer|null: false, foreign_key: true|
 |user|references|null: false, foreign_key: true|
 |group|references|null: false, foreign_key: true|
 
@@ -43,7 +42,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|integer|null: false|
+|name|string|null: false|
 
 
   ### Association
