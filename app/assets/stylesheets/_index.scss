@@ -1,0 +1,89 @@
+$Contents_width: calc(100vw - 300px);
+
+
+.Contents {
+  width: $Contents_width;
+  height: 100vh;
+  float: left;
+  &__top {
+    padding: 0 40px;
+    border-bottom: solid #eeeeee 0.1px;
+    &__groupname {
+      h2 {
+        font-size: 20px;
+        margin: 35px 0 15px;
+        color: #333333;
+      }
+      p {
+        font-size: 12px;
+        color: #999999;
+        margin-bottom: 2px;
+      }
+      a {
+        position: absolute;
+        top: 28px;
+        right: 40px;
+        font-size: 16px;
+        color: #38AEF0;
+        border: solid #38AEF0 0.1px;
+        padding: 8px 20px;
+        float: right;
+      }
+    }
+  }
+  &__messages {
+    background-color: #fafafa;
+    padding: 0 40px;
+    height: calc(100vh - 190px);
+    overflow: scroll;
+    &__box{
+      h2 {
+        font-size: 16px;
+        font-weight: bold;
+        color: rgba(8, 8, 8, 0.753);
+        padding: 46px 0 10px 0;
+        span {
+          font-size: 12px;
+          color: #999999;
+          font-weight: normal;
+          margin: 8px;
+        }
+      }
+      p {
+        font-size: 14px;
+        color: rgba(8, 8, 8, 0.753);
+        padding-bottom: 4px;
+      }
+    }
+  }
+  &__sendmessage {
+    width: $Contents_width;
+    height: 90px;
+    background-color: rgba(201, 201, 201, 0.692);
+    position: absolute;
+    bottom: 0;
+    &--textbox {
+      height: 50px;
+      border: none;
+      width: calc(100vw - 515px);
+      margin: 20px 0 0 40px;
+      padding: 0 10px;
+    }
+    &--sendbtn {
+      background-color: #38AEF0;
+      color: white;
+      height: 50px;
+      width: 100px;
+      margin-left: 10px;
+    }
+    #upload-icon {
+      display:none;
+    }
+    &--image {
+      height: 20px;
+      position: absolute;
+      right: 165px;
+      top: 33px;
+    }
+  }
+}
