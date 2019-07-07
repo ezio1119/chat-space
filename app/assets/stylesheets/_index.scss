@@ -28,6 +28,7 @@ $Contents_width: calc(100vw - 300px);
         border: solid #38AEF0 0.1px;
         padding: 8px 20px;
         float: right;
+        text-decoration: none;
       }
     }
   }
@@ -76,14 +77,18 @@ $Contents_width: calc(100vw - 300px);
       width: 100px;
       margin-left: 10px;
     }
-    #upload-icon {
-      display:none;
-    }
+    
     &--image {
       height: 20px;
       position: absolute;
       right: 165px;
       top: 33px;
+      .icon{
+        font-size: 20px;
+      }
+      &__upload-icon {
+        display:none;
+      }
     }
   }
 }

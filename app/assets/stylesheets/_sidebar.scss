@@ -26,15 +26,18 @@
     overflow: scroll;
     height: calc(100vh - 100px);
     &__group{
-      color: white;
       margin: 0 20px;
-      h2 {
-        font-size: 15px;
-        margin: 20px 0 5px 0;
-      }
-      p {
-        font-size: 11px;
-        margin-bottom: 40px;
+      &__link{
+        color: white;
+        text-decoration: none;
+        h2 {
+          font-size: 15px;
+          margin: 20px 0 5px 0;
+        }
+        p {
+          font-size: 11px;
+          margin-bottom: 40px;
+        }
       }
     }
   }
