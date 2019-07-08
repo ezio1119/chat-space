@@ -1,8 +1,8 @@
 .Contents__messages__box
   %h2
-    =message.user.name
+    = message.user.name
     %span
-      =message.created_at.strftime("%Y/%m/%d(%a) %H:%M:%S")
+      = message.created_at.strftime("%Y/%m/%d(%a) %H:%M:%S")
   %p 
-    =message.text
-  =image_tag message.image.to_s
+    = message.text
+  = image_tag message.image.to_s
