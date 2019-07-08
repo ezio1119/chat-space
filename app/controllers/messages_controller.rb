@@ -16,19 +16,25 @@ class MessagesController < ApplicationController
   end
 
   def create
-    if Message.create(message_params).errors.messages.blank?
-      redirect_to group_messages_path(@group), notice: 'メッセージが送信されました'
-    else
-      redirect_to group_messages_path(@group), alert: "メッセージを入力してください"
-    end 
-    
+    @message = Message.new(message_params)
+
+    respond_to do |format|
+      format.html {
+        if @message.save
+          redirect_to group_messages_path(@group), notice: 'メッセージが送信されました'
+        else
+          redirect_to group_messages_path(@group), alert: "メッセージを入力してください"
+        end
+      }
+      format.json {@message.save}
+    end
   end
 
 
 
   private
   def message_params
-    params.require(:message).permit(:text, :image, :image_cache).merge(user_id: current_user.id, group_id: params[:group_id])
+    params.require(:message).permit(:text, :image).merge(user_id: current_user.id, group_id: params[:group_id])
   end
   def set_group
     @group = Group.find(params[:group_id])
