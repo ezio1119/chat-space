@@ -41,9 +41,6 @@ $(function(){
 
     if (input == ""){return false}
 
-
-    
-
     $.ajax({
       url: "/users",
       type: "GET",
@@ -73,6 +70,7 @@ $(function(){
   $("#user-search-result").on("click", ".user-search-add", function(){
     var user_name = $(this).attr("data-user-name")
     var user_id = $(this).attr("data-user-id")
+    
     addUser(user_name, user_id)
     $(this).parent().remove()
   })
