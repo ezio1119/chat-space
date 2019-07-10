@@ -1,5 +1,6 @@
 $(function(){
-  
+  $(document).on('turbolinks:load', function() {
+
   function scroller(){
     $('.Contents__messages').animate({scrollTop: $(".Contents__messages")[0].scrollHeight},'fast')
   }
@@ -28,7 +29,6 @@ $(function(){
     $(".notification").append(html)
   }
 
-  $(document).on('turbolinks:load', function() {
   
   $("#new_message").on("submit", function(e){
     e.preventDefault()
@@ -52,6 +52,7 @@ $(function(){
     })
 
     .fail(function(){
+      $(".alert, .notice").remove()
       errorHTML("メッセージを入力してください")
       $(".Contents__sendmessage--sendbtn").prop('disabled', false);
     })
