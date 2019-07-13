@@ -3,8 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :groups, through: :members
+
+  has_many :members, foreign_key: "user_id"
+  has_many :groups, through: :members, source: :group
+
   has_many :messages
-  has_many :members
          
 end

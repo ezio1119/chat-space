@@ -1,7 +1,9 @@
 class Group < ApplicationRecord
-  has_many :users, through: :members
+  has_many :members, foreign_key: "group_id"
+  has_many :users, through: :members, source: :user
+
+
   has_many :messages
-  has_many :members
   validates :name, presence: true
 
 
