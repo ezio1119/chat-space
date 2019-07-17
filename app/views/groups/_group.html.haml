@@ -1,0 +1,5 @@
+.Sidebar__groups__group{data: {id: group.id}}
+  = link_to group_messages_path(group.id), class: "Sidebar__groups__group__link" do
+    %h2 
+      =group.name
+    %p= group.show_last_message

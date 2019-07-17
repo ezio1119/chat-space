@@ -8,9 +8,4 @@
       =link_to new_group_path do
         =fa_icon 'pencil-square-o'
   .Sidebar__groups
-    - @groups.each do |group|
-      .Sidebar__groups__group
-        = link_to group_messages_path(group), class: "Sidebar__groups__group__link" do
-          %h2 
-            =group.name
-          %p= group.show_last_message
+    = render @groups

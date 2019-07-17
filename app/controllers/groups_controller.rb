@@ -11,6 +11,10 @@ class GroupsController < ApplicationController
     end
     @groups = (groups + current_user.groups.order("created_at DESC")).uniq
 
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new
@@ -19,7 +23,9 @@ class GroupsController < ApplicationController
   end
 
   def create
+
     @group = Group.new(group_params)
+    binding.pry
     if @group.save
       redirect_to root_path, notice: 'グループを作成しました'
     else
@@ -29,6 +35,8 @@ class GroupsController < ApplicationController
 
   def edit
     @users = @group.users - [current_user]
+    @group.users.where.not(id: current_user.id).where
+
   end
 
   def update

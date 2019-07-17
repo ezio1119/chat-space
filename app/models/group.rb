@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
-  has_many :members, foreign_key: "group_id"
-  has_many :users, through: :members, source: :user
+  has_many :members#これがダメなの
+  has_many :users, through: :members
 
 
   has_many :messages
