@@ -34,50 +34,49 @@ $(function(){
 
   $(document).on('turbolinks:load', function() {
 
-  $("#user-search-field").on("keyup", function(){
-    $("#user-search-result").empty()
-    
-    var input = $(this).val()
+    $("#user-search-field").on("keyup", function(){
+      $("#user-search-result").empty()
+      
+      var input = $(this).val()
 
-    if (input == ""){return false}
+      if (input == ""){return false}
 
-    $.ajax({
-      url: "/users",
-      type: "GET",
-      data: {
-           input: input,
-        addedIDs: getAddedID()
-      },
-      dataType: 'json'
+      $.ajax({
+        url: "/users",
+        type: "GET",
+        data: {
+              input: input,
+          addedIDs: getAddedID()
+        },
+        dataType: 'json'
+      })
+
+      .done(function(users){
+        if (users.length == 0) {
+          notfound()
+        }
+        else {
+          $.each(users, function(index, user){
+            createUser(user)
+          })
+        }
+      })
+
+      .fail(function(){
+        alert("エラ〜")
+      })
     })
 
-    .done(function(users){
-      if (users.length == 0) {
-        notfound()
-      }
-      else {
-        $.each(users, function(index, user){
-          createUser(user)
-        })
-      }
+    $("#user-search-result").on("click", ".user-search-add", function(){
+      var user_name = $(this).attr("data-user-name")
+      var user_id = $(this).attr("data-user-id")
+      
+      addUser(user_name, user_id)
+      $(this).parent().remove()
     })
 
-    .fail(function(){
-      alert("エラ〜")
+    $(".js-add-user").on("click", ".js-remove-btn", function(){
+      $(this).parent().remove()
     })
-  })
-  
-  $("#user-search-result").on("click", ".user-search-add", function(){
-    var user_name = $(this).attr("data-user-name")
-    var user_id = $(this).attr("data-user-id")
-    
-    addUser(user_name, user_id)
-    $(this).parent().remove()
-  })
-  
-  $(".js-add-user").on("click", ".js-remove-btn", function(){
-    $(this).parent().remove()
-  })
-
   })
 })

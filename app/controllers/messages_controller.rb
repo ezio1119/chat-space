@@ -13,6 +13,10 @@ class MessagesController < ApplicationController
     end
     @groups = (groups + current_user.groups.order("created_at DESC")).uniq
 
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
@@ -29,8 +33,6 @@ class MessagesController < ApplicationController
       format.json {@message.save}
     end
   end
-
-
 
   private
   def message_params

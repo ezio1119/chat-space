@@ -11,6 +11,10 @@ class GroupsController < ApplicationController
     end
     @groups = (groups + current_user.groups.order("created_at DESC")).uniq
 
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new
@@ -35,6 +39,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to group_messages_path(@group), notice: 'グループを編集しました'
     else
+      @users = @group.users - [current_user]
       render :edit
     end
   end
@@ -47,4 +52,5 @@ class GroupsController < ApplicationController
   def set_group
     @group = Group.find(params[:id])
   end
+
 end

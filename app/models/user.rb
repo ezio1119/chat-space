@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :members, foreign_key: "user_id"
-  has_many :groups, through: :members, source: :group
+  has_many :members
+  has_many :groups, through: :members
 
   has_many :messages
-         
+
 end

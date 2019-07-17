@@ -1,9 +1,11 @@
 $(function(){
   
-  function reloadMessages(){
+  function reloadMessages() {
+    
     var id = $(".Contents__messages__box").last().data("id")
     var group_id = location.pathname.replace(/\/groups\//,"")
     var group_id = group_id.replace(/\/messages/, "")
+    // console.log(group_id)
 
     $.ajax({
       url: `/groups/${group_id}/api/messages`,
@@ -13,7 +15,7 @@ $(function(){
       },
       dataType: 'json'
     })
-
+  
     .done(function(messages) {
       $.each(messages, function(index, message) {
         appendHTML(message)
@@ -25,6 +27,7 @@ $(function(){
       $(".alert, .notice").remove()
       errorHTML("自動更新に失敗しました。")
     })
+
   }
 
 
@@ -86,9 +89,12 @@ $(function(){
       $("#new_message")[0].reset()
     })
 
+
     if (location.pathname.match(/message/)) {
       scroller()
       setInterval(reloadMessages, 5000)
     }
+
+
   })
 })
