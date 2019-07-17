@@ -94,9 +94,6 @@ $(function(){
       scroller()
       setInterval(reloadMessages, 5000)
     }
-    else {
-      clearInterval(reloadMessages)
-    }
 
 
   })

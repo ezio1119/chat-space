@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:update, :edit]
+  before_action :set_users, only: [:update, :edit]
 
   def index
     groups = []
@@ -23,19 +24,17 @@ class GroupsController < ApplicationController
   end
 
   def create
-
     @group = Group.new(group_params)
-    binding.pry
     if @group.save
       redirect_to root_path, notice: 'グループを作成しました'
     else
       render action: :new
     end
+
+    
   end
 
   def edit
-    @users = @group.users - [current_user]
-    @group.users.where.not(id: current_user.id).where
 
   end
 
@@ -54,5 +53,9 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def set_users
+    @users = @group.users - [current_user]
   end
 end
