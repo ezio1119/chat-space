@@ -26,24 +26,9 @@ $(function(){
     $(".Sidebar__groups").append(html)
   }
 
-
   var path = location.pathname
   if ( (path.match(/groups/) && path.match(/messages/) ) || path == "\/" ) {
     setInterval(reloadGroups, 5000)
   }
-
-  // var path = location.pathname
-  // var regexp = RegExp('messages')
-
-  // var set = setInterval(function(){
-  //   if ( regexp.test(path) == false && path != "\/" ) { 
-  //     console.log("aaaaa")
-  //     clearInterval(set)
-  //   }
-  //   else {
-  //     reloadGroups()
-  //   }
-  // }, 5000)
-
-
+  
 })
