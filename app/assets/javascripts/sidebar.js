@@ -1,19 +1,29 @@
 $(function(){
   function reloadGroups(){
-    $.ajax({
-      url: "/",
-      type: "GET",
-      dataType: "json",
-    })
+    var path = location.pathname
 
-    .done(function(groups) {
-      $(".Sidebar__groups__group").remove()
-      $.each(groups, function(index, group) {
-        appendGroup(group)
+    if ( (path.match(/groups/) && path.match(/messages/) ) || path == "\/" ) {
+      $.ajax({
+        url: "/",
+        type: "GET",
+        dataType: "json",
       })
-    })
 
-    
+      .done(function(groups) {
+        $(".Sidebar__groups__group").remove()
+        $.each(groups, function(index, group) {
+          appendGroup(group)
+        })
+      })
+
+      .fail(function(){
+        $(".alert, .notice").remove()
+        errorHTML("メッセージを入力してください")
+      })
+    }
+    else {
+      clearInterval(reloadGroups)
+    }
   }
 
   function appendGroup(group) {
@@ -26,9 +36,5 @@ $(function(){
     $(".Sidebar__groups").append(html)
   }
 
-  var path = location.pathname
-  if ( (path.match(/groups/) && path.match(/messages/) ) || path == "\/" ) {
-    setInterval(reloadGroups, 5000)
-  }
-  
+    setInterval(reloadGroups, 1000)
 })

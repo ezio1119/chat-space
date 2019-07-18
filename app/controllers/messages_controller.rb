@@ -21,7 +21,6 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-
     respond_to do |format|
       format.html {
         if @message.save

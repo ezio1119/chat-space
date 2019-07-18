@@ -1,35 +1,36 @@
 $(function(){
   
   function reloadMessages() {
+    if (location.pathname.match(/message/)) {
     
-    var id = $(".Contents__messages__box").last().data("id")
-    var group_id = location.pathname.replace(/\/groups\//,"")
-    var group_id = group_id.replace(/\/messages/, "")
-    // console.log(group_id)
+      var id = $(".Contents__messages__box").last().data("id")
+      var group_id = location.pathname.replace(/\/groups\//,"")
+      var group_id = group_id.replace(/\/messages/, "")
 
-    $.ajax({
-      url: `/groups/${group_id}/api/messages`,
-      type: "GET",
-      data: {
-        id: id
-      },
-      dataType: 'json'
-    })
-  
-    .done(function(messages) {
-      $.each(messages, function(index, message) {
-        appendHTML(message)
-        scroller()
+      $.ajax({
+        url: `/groups/${group_id}/api/messages`,
+        type: "GET",
+        data: {
+          id: id
+        },
+        dataType: 'json'
       })
-    })
+    
+      .done(function(messages) {
+        $.each(messages, function(index, message) {
+          appendHTML(message)
+        })
+      })
 
-    .fail(function(){
-      $(".alert, .notice").remove()
-      errorHTML("自動更新に失敗しました。")
-    })
-
+      .fail(function(){
+        $(".alert, .notice").remove()
+        errorHTML("自動更新に失敗しました。")
+      })
+    }
+    else {
+      clearInterval(reloadMessages)
+    }
   }
-
 
   function scroller(){
     $('.Contents__messages').animate({scrollTop: $(".Contents__messages")[0].scrollHeight},'fast')
@@ -51,14 +52,15 @@ $(function(){
                 </div>`
     
     $(".Contents__messages").append(html)
+    scroller()
   }
 
   function errorHTML(error) {
     var html = `<div class="alert">${error}</div>`
     $(".notification").append(html)
   }
-  $(document).on('turbolinks:load', function() {
 
+  $(document).on('turbolinks:load', function() {
     $("#new_message").on("submit", function(e){
       e.preventDefault()
       $(".alert").remove()
@@ -88,13 +90,7 @@ $(function(){
 
       $("#new_message")[0].reset()
     })
-
-
-    if (location.pathname.match(/message/)) {
-      scroller()
-      setInterval(reloadMessages, 5000)
-    }
-
-
   })
+
+  setInterval(reloadMessages, 5000)
 })
